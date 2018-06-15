@@ -1,4 +1,4 @@
-package com.tai.chat;
+package com.tai;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

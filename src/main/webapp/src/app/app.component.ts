@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
-// import Stomp from 'stompjs';
-// import SockJS from 'sockjs-client';
-import * as SockJS from 'sockjs-client';
-import * as Stomp from 'stompjs';
-// import $ from 'jquery';
-import * as $ from 'jquery';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
+
+import {UserService} from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -12,32 +10,27 @@ import * as $ from 'jquery';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
- // private serverUrl = 'http://192.168.1.119:8888/socket';
-  private serverUrl = 'http://localhost:8080/socket'
-  public title = 'Chat';
-  private stompClient;
+  title = 'Angular SpringBoot JWT integration';
 
-  constructor() {
-    this.initializeWebSocketConnection();
+  constructor(private router: Router, private userService: UserService, private cdRef:ChangeDetectorRef) {
+
   }
 
-  initializeWebSocketConnection() {
-    const ws = new SockJS(this.serverUrl);
-    this.stompClient = Stomp.over(ws);
-    const that = this;
-    this.stompClient.connect({}, function(frame) {
-      that.stompClient.subscribe('/chat', (message) => {
-        if (message.body) {
-          $('.chat').append('<div class=\'message\'>' + message.body + '</div>');
-          console.log(message.body);
-        }
-      });
-    });
+  ngAfterViewChecked() { 
+    // Avoid the error: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked
+    this.cdRef.detectChanges();
   }
 
-  sendMessage(message) {
-    this.stompClient.send('/app/send/message' , {}, message);
-    $('#input').val('');
+  logout() {
+    this.userService.logout();
+    this.router.navigate(['/']);
   }
 
+  get isAdminUser() {
+    return this.userService.isAdminUser();
+  }
+
+  get isUser() {
+    return this.userService.isUser();
+  }
 }
