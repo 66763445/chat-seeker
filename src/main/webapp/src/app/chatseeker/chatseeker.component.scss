@@ -1,0 +1,23 @@
+.grid-container {
+  display: grid;
+  grid: 0px / auto auto auto;
+  background-color: #2196F3;
+}
+.a {
+	width: 35vw;
+	height: 100vh;
+  	background-color: #000000;
+  	font-size: 3em; 
+  	font-family: 'Gochi Hand', sans-serif;
+  	color: #990000;
+}
+.logout-button {
+	height: 10vh;
+	width: 18vw;
+  font-size: 3em; 
+  font-family: 'Calibri', sans-serif;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+}

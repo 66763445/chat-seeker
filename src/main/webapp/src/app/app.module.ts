@@ -22,6 +22,7 @@ import {AppDataService} from './services/app-data.service';
 import { CellComponent } from './cell/cell.component';
 import { BoardComponent } from './board/board.component';
 import { ChatComponent } from './chat/chat.component';
+import { ChatseekerComponent } from './chatseeker/chatseeker.component';
 
 export function authHttpServiceFactory(http: Http) {
   return new AuthHttp(new AuthConfig({
@@ -44,6 +45,7 @@ export function authHttpServiceFactory(http: Http) {
     CellComponent,
     BoardComponent,
     ChatComponent,
+    ChatseekerComponent,
   ],
   imports: [
     BrowserModule,

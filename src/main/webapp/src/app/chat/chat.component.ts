@@ -13,6 +13,10 @@ export class ChatComponent {
   private serverUrl = 'http://localhost:8080/socket'
   public title = 'app';
   private stompClient;
+  private subscription;
+  private x = 1;
+  private y = 1;
+  private NICK = localStorage.getItem('NICK');
 
   constructor() {
     this.initializeWebSocketConnection();
@@ -23,18 +27,32 @@ export class ChatComponent {
     this.stompClient = Stomp.over(ws);
     const that = this;
     this.stompClient.connect({}, function(frame) {
-      that.stompClient.subscribe('/chat', (message) => {
-        if (message.body) {
-          $('.chat').append('<div class=\'message\'>' + message.body + '</div>');
-          console.log(message.body);
-        }
-      });
+      that.subscription = that.stompClient.subscribe('/chat/X'+that.x+'Y'+that.y, that.handleChatMessage);
+      that.stompClient.subscribe('/chatSwapper/'+that.NICK, that.handleSwapChat);
+      $('.chat').append("<div color=red class='systemMessage'>CONNECTED TO CHAT ... WELCOME!</div>");
     });
+    //this.subscription = that.stompClient.subscribe('/chat', this.handleChatMessage);
   }
 
   sendMessage(message) {
-    this.stompClient.send('/app/send/message' , {}, message);
+    this.stompClient.send('/app/send/message' , {}, this.x+';'+this.y+';'+this.NICK+';'+message);
     $('#input').val('');
   }
 
+  handleSwapChat = (message) => {
+    if (message.body) {
+      this.subscription.unsubscribe();
+      var splittedString = message.body.split(/X|Y/);
+      this.x = splittedString[1];
+      this.y = splittedString[2];
+      this.subscription = this.stompClient.subscribe('/chat/'+message.body, this.handleChatMessage);
+      $('.chat').append("<div class='systemMessage'>Chat room changed to Room: X"+this.x+"Y"+this.y+ "</div>");
+    }
+  }
+
+  handleChatMessage = (message) => {
+    if (message.body) {
+      $('.chat').append('<div class=\'message\'>' + message.body + '</div>');
+    }
+  }
 }

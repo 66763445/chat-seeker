@@ -3,15 +3,15 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  background-color: #a45632;
-  color: #fff;
+  background-color: #000000;
+  color: #ffffff;
+  width: 45vw;
 }
 
 .gameStatus {
 	margin: 0px;
-	padding: 15px;
-  background-color: #34495e;
-  color: #fff;
+  background-color: #cccccc;
+  color: #ffffff;
   font-size: 1.4em;
   font-weight: bold;
 }
@@ -24,10 +24,9 @@
   font-size: 1.4em;
   font-weight: bold;
   margin: 0px;
-  padding: 15px;
   width: 100%;
 }
 .restart:hover {
-  background-color: #c1cdcd;
+  background-color: #000000;
   cursor: pointer;
 }

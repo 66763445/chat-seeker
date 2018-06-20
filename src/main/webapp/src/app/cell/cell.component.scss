@@ -1,13 +1,14 @@
 .cell {
-  width: 100px;
-  height: 100px;
+  width: 4.5vw;
+  height: 4.5vw;
   box-sizing: border-box;
-  border: 3px solid #f4af78;
-  font-size: 5em; 
+  border: 1px solid #ffffff;
+  font-size: 3em; 
   font-family: 'Gochi Hand', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #990000;
 }
 
 .cell:hover {

@@ -37,3 +37,6 @@ dependencies {
     compile group: 'org.springframework.security', name: 'spring-security-jwt', version: '1.0.7.RELEASE'
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+dependencyManagement {
+    applyMavenExclusions = false
+}

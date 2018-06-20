@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
 
           if (result) {
             this.userService.login(result);
+            localStorage.setItem('NICK',this.model.username);
             this.navigateAfterSuccess();
           } else {
             this.error = 'Username or password is incorrect';

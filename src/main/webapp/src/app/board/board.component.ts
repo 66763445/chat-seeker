@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
+import * as SockJS from 'sockjs-client';
+import * as Stomp from 'stompjs';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'board',
@@ -7,49 +10,77 @@ import {Router} from "@angular/router";
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent {
-  squares = Array(9).fill(null);
-  player = 'X';
-  winner = null;
+
+  private serverUrl = 'http://localhost:8080/socket'
+  stompClient;
+
+  cellWidth = 10;
+  cellHeight = 7;
+  cellColumns = [];
+  cellRows = [];
+  private NICK = localStorage.getItem('NICK');
+
+  squares = Array(this.cellHeight*this.cellWidth).fill(null);
+  playerX = 1;
+  playerY = 1;
+
+  isMoving = false;
+  moveTimer;
 
   constructor(private router: Router) {
+
+    for(var i = 0; i < this.cellWidth; i++) {
+      this.cellColumns.push(i);
+    }
+    for(var i = 0; i < this.cellHeight; i++) {
+      this.cellRows.push(i);
+    }
+    this.setSquare(this.playerX,this.playerY,'X');
+    this.initializeWebSocketConnection();
   }
 
-  get gameStatusMessage(){
-    return this.winner? `Player ${this.winner} has won!` :
-    `Player ${this.player}'s turn`;
+  initializeWebSocketConnection() {
+    const ws = new SockJS(this.serverUrl);
+    this.stompClient = Stomp.over(ws);
+    this.stompClient.connect({}, function(frame) {});
   }
 
-  handleMove(position) {
-    if(!this.winner && !this.squares[position] ){
-      this.squares[position] = this.player;
-      if(this.winnigMove()) {
-        this.winner = this.player;
-        this.router.navigate(['chat']);
-      }
-      this.player = this.player === 'X' ? 'O' : 'X';
+  handleMove(x,y) {
+    if( this.isInRange(x,y,1) && !this.isMoving) {
+        var timeleft = 10;
+        this.isMoving = true;
+        this.setSquare(x,y,timeleft);
+        this.moveTimer = setInterval(function(){
+          timeleft--;
+          this.setSquare(x,y,timeleft);
+          if(timeleft <= 0) {
+            clearInterval(this.moveTimer);
+            this.setSquare(this.playerX,this.playerY,'');
+            this.playerX = x;
+            this.playerY = y;
+            this.setSquare(x,y,'X');
+            this.sendUpdateCoords('X'+x+'Y'+y);
+            this.isMoving = false;
+          }
+        }.bind(this),1000);
     }
   }
 
-  winnigMove() {
-    const conditions = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
-      [0, 3, 6], [1, 4, 7], [2, 5, 8], // colums
-      [0, 4, 8], [2, 4, 6]             // diagonal
-    ];
-    for (let condition of conditions) {
-        if ( this.squares[condition[0]]
-            && this.squares[condition[0]] === this.squares[condition[1]]
-            && this.squares[condition[1]] === this.squares[condition[2]]) {
-              return true;
-        }
-    }
-    return false;
+  isInRange(x,y,range) {
+    return Math.abs(this.playerX-x) <= range && 
+      Math.abs(this.playerY-y) <= range &&
+      (this.playerX != x || this.playerY != y);
   }
 
-  restartGame() {
-    this.squares = Array(9).fill(null);
-    this.player = 'X';
-    this.winner = null;
+  sendUpdateCoords(message) {
+    this.stompClient.send('/app/update/coords' , {}, this.NICK+";"+message);
   }
 
+  getSquare(x,y) {
+    return this.squares[x+y*this.cellWidth];
+  }
+
+  setSquare(x,y,s) {
+    this.squares[x+y*this.cellWidth] = s;
+  }
 }

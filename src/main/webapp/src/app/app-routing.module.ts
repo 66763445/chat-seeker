@@ -6,9 +6,7 @@ import {AdminComponent} from './admin/admin.component';
 import {AuthGuard} from './guards/auth-guard.service';
 import {AdminAuthGuard} from './guards/admin-auth-guard.service';
 
-import {HomeComponent} from './home/home.component';
-import {UserComponent} from './user/user.component';
-import {ChatComponent} from "./chat/chat.component";
+import {ChatseekerComponent} from "./chatseeker/chatseeker.component";
 
 const routes: Routes = [
   {
@@ -16,27 +14,18 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
     path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuard, AdminAuthGuard]
   },
   {
-    path: 'user',
-    component: UserComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'chat',
-    component: ChatComponent,
+    path: 'chatseeker',
+    component: ChatseekerComponent,
     canActivate: [AuthGuard]
   },
   {
     path: '**',
-    redirectTo: '/home'
+    redirectTo: '/chatseeker'
   }
 ];
 
