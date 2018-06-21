@@ -22,8 +22,8 @@ export class BoardComponent {
   private NICK = localStorage.getItem('NICK');
 
   squares = Array(this.cellHeight*this.cellWidth).fill(null);
-  playerX = 1;
-  playerY = 1;
+  playerX = 0;
+  playerY = 0;
 
   isMoving = false;
   moveTimer;
