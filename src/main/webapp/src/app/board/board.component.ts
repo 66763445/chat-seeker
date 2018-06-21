@@ -3,6 +3,9 @@ import {Router} from "@angular/router";
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import * as $ from 'jquery';
+import { ChangeDetectorRef } from '@angular/core';
+
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'board',
@@ -11,7 +14,6 @@ import * as $ from 'jquery';
 })
 export class BoardComponent {
 
-  private serverUrl = 'http://chatseeeker.herokuapp.com:80/socket'
   stompClient;
 
   cellWidth = 10;
@@ -27,7 +29,7 @@ export class BoardComponent {
   isMoving = false;
   moveTimer;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: UserService, private cdRef:ChangeDetectorRef) {
 
     for(var i = 0; i < this.cellWidth; i++) {
       this.cellColumns.push(i);
@@ -40,7 +42,7 @@ export class BoardComponent {
   }
 
   initializeWebSocketConnection() {
-    const ws = new SockJS(this.serverUrl);
+    const ws = new SockJS(this.userService.getServerUrl());
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect({}, function(frame) {});
   }
@@ -83,4 +85,5 @@ export class BoardComponent {
   setSquare(x,y,s) {
     this.squares[x+y*this.cellWidth] = s;
   }
+  
 }

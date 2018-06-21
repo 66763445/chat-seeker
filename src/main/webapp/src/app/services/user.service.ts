@@ -8,7 +8,10 @@ export class UserService {
   jwtHelper: JwtHelper = new JwtHelper();
   accessToken: string;
   isAdmin: boolean;
-
+  serverUrl = 'http://chatseeeker.herokuapp.com:80/socket';
+  subscription;
+  swapSubscription;
+  
   constructor() {
   }
 
@@ -25,6 +28,8 @@ export class UserService {
   logout() {
     this.accessToken = null;
     this.isAdmin = false;
+    this.subscription.unsubscribe();
+    this.swapSubscription.unsubscribe();
     localStorage.removeItem(TOKEN_NAME);
   }
 
@@ -34,5 +39,27 @@ export class UserService {
 
   isUser(): boolean {
     return this.accessToken && !this.isAdmin;
+  }
+
+  getSubscription() {
+    return this.subscription;
+  }
+
+  setSubscription(s) {
+    this.subscription = s;
+  }
+
+  getSwapSubscription() {
+    return this.swapSubscription;
+  }
+
+  setSwapSubscription(s) {
+    this.swapSubscription = s;
+  }
+  getServerUrl() {
+    return this.serverUrl;
+  }
+  normal_unsubscribe(){
+    this.subscription.unsubscribe();
   }
 }
