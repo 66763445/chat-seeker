@@ -12,7 +12,7 @@ import * as $ from 'jquery';
 export class BoardComponent {
 
   var port = process.env.PORT || 8080;
-  private serverUrl = 'http://chatseeeker.herokuapp.com:'+port+'/socket'
+  private serverUrl = 'https://chatseeeker.herokuapp.com:'+port+'/socket'
   stompClient;
 
   cellWidth = 10;

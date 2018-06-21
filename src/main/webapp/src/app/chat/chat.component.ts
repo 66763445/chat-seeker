@@ -11,7 +11,7 @@ import * as $ from 'jquery';
 export class ChatComponent {
 
   var port = process.env.PORT || 8080;
-  private serverUrl = 'http://chatseeeker.herokuapp.com:'+port+'/socket'
+  private serverUrl = 'https://chatseeeker.herokuapp.com:'+port+'/socket'
 
   public title = 'app';
   private stompClient;
