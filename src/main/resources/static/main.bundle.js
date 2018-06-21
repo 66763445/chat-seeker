@@ -713,7 +713,7 @@ exports = module.exports = __webpack_require__(11)();
 
 
 // module
-exports.push([module.i, "h1 {\n  text-align: center;\n}", ""]);
+exports.push([module.i, "h1 {\r\n  text-align: center;\r\n}", ""]);
 
 // exports
 
@@ -744,21 +744,21 @@ module.exports = module.exports.toString();
 /***/ 222:
 /***/ (function(module, exports) {
 
-module.exports = "<h2>\n  Admin screen. Available for Admin users\n</h2>\n\n<p>Here is the data received from SpringBoot API for Admin users ONLY</p>\n\n<pre>{{users$| async | json}}</pre>\n"
+module.exports = "<h2>\r\n  Admin screen. Available for Admin users\r\n</h2>\r\n\r\n<p>Here is the data received from SpringBoot API for Admin users ONLY</p>\r\n\r\n<pre>{{users$| async | json}}</pre>\r\n"
 
 /***/ }),
 
 /***/ 223:
 /***/ (function(module, exports) {
 
-module.exports = "<!--\n<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <ul class=\"nav navbar-nav\">\n      <li routerLinkActive=\"active\"><a routerLink=\"/home\">Home</a></li>\n      <li routerLinkActive=\"active\"><a routerLink=\"/user\">User</a></li>\n      <li routerLinkActive=\"active\"><a routerLink=\"/admin\">Admin</a></li>\n    </ul>\n\n    <ul class=\"nav navbar-nav navbar-right\">\n      <p class=\"navbar-text\" *ngIf=\"isAdminUser\">You are admin!</p>\n      <p class=\"navbar-text\" *ngIf=\"isUser\">You are user!</p>\n      <li><button class=\"btn navbar-btn\" (click)=\"logout()\">Logout</button></li>\n    </ul>\n  </div>\n</nav>\n-->\n\n<router-outlet class=\"a\"></router-outlet>\n"
+module.exports = "<!--\r\n<nav class=\"navbar navbar-default\">\r\n  <div class=\"container-fluid\">\r\n    <ul class=\"nav navbar-nav\">\r\n      <li routerLinkActive=\"active\"><a routerLink=\"/home\">Home</a></li>\r\n      <li routerLinkActive=\"active\"><a routerLink=\"/user\">User</a></li>\r\n      <li routerLinkActive=\"active\"><a routerLink=\"/admin\">Admin</a></li>\r\n    </ul>\r\n\r\n    <ul class=\"nav navbar-nav navbar-right\">\r\n      <p class=\"navbar-text\" *ngIf=\"isAdminUser\">You are admin!</p>\r\n      <p class=\"navbar-text\" *ngIf=\"isUser\">You are user!</p>\r\n      <li><button class=\"btn navbar-btn\" (click)=\"logout()\">Logout</button></li>\r\n    </ul>\r\n  </div>\r\n</nav>\r\n-->\r\n\r\n<router-outlet class=\"a\"></router-outlet>\r\n"
 
 /***/ }),
 
 /***/ 224:
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n\t\t<div class=\"board\" *ngFor=\"let row of cellRows\">\n\t\t\t<cell *ngFor=\"let col of cellColumns\"\n\t\t\t\t[state]=\"squares[col+row*cellWidth]\"\n\t\t\t\t(click)=\"handleMove(col,row)\"\n\t\t\t>\n\t\t\t</cell>\n\t\t</div>\n</div>\n\t"
+module.exports = "<div>\r\n\t\t<div class=\"board\" *ngFor=\"let row of cellRows\">\r\n\t\t\t<cell *ngFor=\"let col of cellColumns\"\r\n\t\t\t\t[state]=\"squares[col+row*cellWidth]\"\r\n\t\t\t\t(click)=\"handleMove(col,row)\"\r\n\t\t\t>\r\n\t\t\t</cell>\r\n\t\t</div>\r\n</div>\r\n\t"
 
 /***/ }),
 
@@ -772,7 +772,7 @@ module.exports = "<div class=\"cell\" >{{state}}</div>"
 /***/ 226:
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\n  <div class=\"chat-container\">\n    <div class=\"chat\">\n    </div>\n  </div>\n</div>\n\n<div class=\"footer\">\n  <div class=\"send-button\">\n\n    <div class=\"send\" (click)=\"sendMessage(input.value)\">\n    </div>\n    <input  id=\"input\" type=\"text\" #input>\n  </div>\n\n</div>\n"
+module.exports = "<div style=\"text-align:center\">\r\n  <div class=\"chat-container\">\r\n    <div class=\"chat\">\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"footer\">\r\n  <div class=\"send-button\">\r\n\r\n    <div class=\"send\" (click)=\"sendMessage(input.value)\">\r\n    </div>\r\n    <input  id=\"input\" type=\"text\" #input>\r\n  </div>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -786,21 +786,21 @@ module.exports = "<div class=\"grid-container\">\n\n\t<div class=\"a\">{{NICK}}<
 /***/ 228:
 /***/ (function(module, exports) {
 
-module.exports = "<h2>\n  Home screen. Available for all authorized and not authorized users.\n</h2>\n"
+module.exports = "<h2>\r\n  Home screen. Available for all authorized and not authorized users.\r\n</h2>\r\n"
 
 /***/ }),
 
 /***/ 229:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"bg\">\n\t<p class=\"title\">CHATSEEKER</p>\n\n\t<div class=\"form-wrapper\">\n\t  <form name=\"form\" (ngSubmit)=\"f.form.valid && login()\" #f=\"ngForm\" novalidate>\n\t    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !username.valid }\">\n\t      <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"model.username\" #username=\"ngModel\"\n\t             required placeholder=\"Username\"/>\n\t      <div *ngIf=\"f.submitted && !username.valid\" class=\"help-block\">Username is required</div>\n\t    </div>\n\t    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n\t      <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.password\" #password=\"ngModel\"\n\t             required placeholder=\"Password\"/>\n\t      <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\n\t    </div>\n\t    <div class=\"form-group\">\n\t      <button [disabled]=\"loading\" class=\"btn btn-primary\">SIGN IN</button>\n\t    </div>\n\t    <div *ngIf=\"error\" class=\"alert alert-danger\">{{error}}</div>\n\t  </form>\n\t</div>\n\n\t<p class=\"tip\">Username and password: </p>\n\t<p class=\"tip\">franciszek.kubis and jwtpass</p>\n\t<p class=\"tip\">tomasz.blonski and jwtpass</p>\n</div>"
+module.exports = "<div class=\"bg\">\r\n\t<p class=\"title\">CHATSEEKER</p>\r\n\r\n\t<div class=\"form-wrapper\">\r\n\t  <form name=\"form\" (ngSubmit)=\"f.form.valid && login()\" #f=\"ngForm\" novalidate>\r\n\t    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !username.valid }\">\r\n\t      <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"model.username\" #username=\"ngModel\"\r\n\t             required placeholder=\"Username\"/>\r\n\t      <div *ngIf=\"f.submitted && !username.valid\" class=\"help-block\">Username is required</div>\r\n\t    </div>\r\n\t    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\r\n\t      <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.password\" #password=\"ngModel\"\r\n\t             required placeholder=\"Password\"/>\r\n\t      <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\r\n\t    </div>\r\n\t    <div class=\"form-group\">\r\n\t      <button [disabled]=\"loading\" class=\"btn btn-primary\">SIGN IN</button>\r\n\t    </div>\r\n\t    <div *ngIf=\"error\" class=\"alert alert-danger\">{{error}}</div>\r\n\t  </form>\r\n\t</div>\r\n\r\n\t<p class=\"tip\">Username and password: </p>\r\n\t<p class=\"tip\">franciszek.kubis and jwtpass</p>\r\n\t<p class=\"tip\">tomasz.blonski and jwtpass</p>\r\n</div>"
 
 /***/ }),
 
 /***/ 230:
 /***/ (function(module, exports) {
 
-module.exports = "<!--<pre>{{city$ | async | json}}</pre>-->\n\n<chatseeker></chatseeker>"
+module.exports = "<!--<pre>{{city$ | async | json}}</pre>-->\r\n\r\n<chatseeker></chatseeker>"
 
 /***/ }),
 

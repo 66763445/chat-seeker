@@ -10,9 +10,8 @@ import * as $ from 'jquery';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent {
-
-  var port = process.env.PORT || 8080;
-  private serverUrl = 'https://chatseeeker.herokuapp.com:'+port+'/socket'
+  
+  private serverUrl = 'http://localhost:8080/socket'
   stompClient;
 
   cellWidth = 10;
@@ -22,8 +21,8 @@ export class BoardComponent {
   private NICK = localStorage.getItem('NICK');
 
   squares = Array(this.cellHeight*this.cellWidth).fill(null);
-  playerX = 0;
-  playerY = 0;
+  playerX = 1;
+  playerY = 1;
 
   isMoving = false;
   moveTimer;
@@ -41,7 +40,6 @@ export class BoardComponent {
   }
 
   initializeWebSocketConnection() {
-    this.setSquare(0,0,serverUrl);
     const ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect({}, function(frame) {});
