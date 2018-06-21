@@ -11,7 +11,7 @@ import * as $ from 'jquery';
 })
 export class BoardComponent {
 
-  private serverUrl = 'http://localhost:5000/socket'
+  private serverUrl = 'http://localhost:8080/socket'
   stompClient;
 
   cellWidth = 10;
