@@ -41,6 +41,7 @@ export class BoardComponent {
   }
 
   initializeWebSocketConnection() {
+    this.setSquare(0,0,serverUrl);
     const ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect({}, function(frame) {});
