@@ -294,7 +294,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var BoardComponent = (function () {
     function BoardComponent(router) {
         this.router = router;
-        this.serverUrl = 'http://localhost:8080/socket';
+        this.serverUrl = 'ws://localhost:8080/socket';
         this.cellWidth = 10;
         this.cellHeight = 7;
         this.cellColumns = [];
@@ -433,7 +433,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ChatComponent = (function () {
     function ChatComponent() {
         var _this = this;
-        this.serverUrl = 'http://localhost:8080/socket';
+        this.serverUrl = 'ws://localhost:8080/socket';
         this.title = 'app';
         this.x = 1;
         this.y = 1;

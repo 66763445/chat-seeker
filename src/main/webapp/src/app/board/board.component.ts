@@ -11,7 +11,7 @@ import * as $ from 'jquery';
 })
 export class BoardComponent {
 
-  private serverUrl = 'http://localhost:8080/socket'
+  private serverUrl = 'ws://localhost:8080/socket'
   stompClient;
 
   cellWidth = 10;
@@ -67,7 +67,7 @@ export class BoardComponent {
   }
 
   isInRange(x,y,range) {
-    return Math.abs(this.playerX-x) <= range && 
+    return Math.abs(this.playerX-x) <= range &&
       Math.abs(this.playerY-y) <= range &&
       (this.playerX != x || this.playerY != y);
   }

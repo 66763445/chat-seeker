@@ -10,7 +10,7 @@ import * as $ from 'jquery';
 })
 export class ChatComponent {
 
-  private serverUrl = 'http://localhost:8080/socket'
+  private serverUrl = 'ws://localhost:8080/socket'
   public title = 'app';
   private stompClient;
   private subscription;
