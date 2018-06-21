@@ -11,7 +11,7 @@ import * as $ from 'jquery';
 })
 export class BoardComponent {
 
-  private serverUrl = 'http://localhost:80/socket'
+  private serverUrl = 'http://chatseeeker.herokuapp.com:80/socket'
   stompClient;
 
   cellWidth = 10;

@@ -10,7 +10,7 @@ import * as $ from 'jquery';
 })
 export class ChatComponent {
 
-  private serverUrl = 'http://localhost:80/socket'
+  private serverUrl = 'http://chatseeeker.herokuapp.com:80/socket'
   public title = 'app';
   private stompClient;
   private subscription;
