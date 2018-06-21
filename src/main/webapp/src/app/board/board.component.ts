@@ -10,8 +10,8 @@ import * as $ from 'jquery';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent {
-  
-  private serverUrl = 'http://localhost:8080/socket'
+
+  private serverUrl = 'http://localhost:80/socket'
   stompClient;
 
   cellWidth = 10;
